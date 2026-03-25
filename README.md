@@ -4,6 +4,9 @@
 
 A set of tools and services to manage Waylearn's Bootcamps and in the future, DevRel. 
 
+## Pre-requisites 
+- You'll need Deno 2.x, check how to install at https://deno.com
+
 ## What's there
 
 At the moment: 
