@@ -1,5 +1,5 @@
 {
-  "name": "@waylearn/faucet",
+  "name": "@waylearn/auth",
   "version": "0.1.0",
   "exports": "./mod.ts"
 }

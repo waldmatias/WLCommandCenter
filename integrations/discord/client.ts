@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionTypes, createBot, InteractionResponseTypes, InteractionTypes } from "discordeno";
-import { transferTokens } from "@services/faucet";
+import { transferTokens } from "@waylearn/faucet";
 
 const bot = createBot({
     token: Deno.env.get("WAYLEARN_BOT_TOKEN") ?? "",
