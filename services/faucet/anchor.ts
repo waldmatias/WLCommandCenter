@@ -1,4 +1,4 @@
-import idl from "../idl/idl.json" with { type: "json"}
+import idl from "./idl/idl.json" with { type: "json"}
 
 export function decodeAnchorError(errorCode: number) {
     const errorMsg = idl.errors?.find(e => e.code === errorCode);

@@ -1,18 +1,17 @@
 import { ApplicationCommandOptionTypes, createBot, InteractionResponseTypes, InteractionTypes } from "discordeno";
-import { transferTokens } from "../services/faucet.ts";
-
+import { transferTokens } from "@services/faucet";
 
 const bot = createBot({
     token: Deno.env.get("WAYLEARN_BOT_TOKEN") ?? "",
     applicationId: BigInt(Deno.env.get("APPLICATION_ID") ?? ""),
     desiredProperties: {
         interaction: {
-            id: true, 
-            token: true, 
-            type: true, 
-            data: true, 
-            user: true, 
-            member: true, 
+            id: true,
+            token: true,
+            type: true,
+            data: true,
+            user: true,
+            member: true,
         },
     },
     events: {
@@ -23,20 +22,26 @@ const bot = createBot({
             if (interaction.type === InteractionTypes.ApplicationCommand) {
                 const commandName = interaction.data?.name;
 
+                // TODO: server commands
                 switch (commandName) {
                     case "ping":
                         return handlePing(interaction);
                     case "drip":
                         return handleDrip(interaction);
+                    // case "faucet"
                 }
+                // TODO: user commands
+                // "address balance"
+                // TODO: registered user commands (DevAccount)
+                // "transfer to"
             }
-        }
-    }
+        },
+    },
 });
 
-const handleDrip =  async(interaction) => {
+const handleDrip = async (interaction) => {
     const bot = interaction.bot;
-    
+
     await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
         type: InteractionResponseTypes.DeferredChannelMessageWithSource,
     });
@@ -56,7 +61,7 @@ const handleDrip =  async(interaction) => {
             content: `❌ Error: ${err.message}`,
         });
     }
-}
+};
 
 const handlePing = async (interaction) => {
     const bot = interaction.bot;
@@ -64,7 +69,7 @@ const handlePing = async (interaction) => {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: { content: "🏓 Pong!" },
     });
-}
+};
 
 await bot.helpers.upsertGlobalApplicationCommands([
     {
@@ -80,10 +85,11 @@ await bot.helpers.upsertGlobalApplicationCommands([
                 description: "Your address",
                 type: ApplicationCommandOptionTypes.String,
                 required: true,
-            }
-        ]
-    }
+            },
+        ],
+    },
 ]);
+
 console.log("✅ Commands registered!");
 
 await bot.start();

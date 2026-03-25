@@ -1,4 +1,4 @@
-import { transferTokens } from "./services/faucet.ts";
+import { transferTokens } from "@services/faucet";
 
 const reqAddress = ``;
 
