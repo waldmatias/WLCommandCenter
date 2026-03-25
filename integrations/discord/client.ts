@@ -1,4 +1,9 @@
-import { ApplicationCommandOptionTypes, createBot, InteractionResponseTypes, InteractionTypes } from "discordeno";
+import {
+    ApplicationCommandOptionTypes,
+    createBot,
+    InteractionResponseTypes,
+    InteractionTypes,
+} from "discordeno";
 import { transferTokens } from "@waylearn/faucet";
 
 const bot = createBot({
@@ -28,7 +33,7 @@ const bot = createBot({
                         return handlePing(interaction);
                     case "drip":
                         return handleDrip(interaction);
-                    // case "faucet"
+                        // case "faucet"
                 }
                 // TODO: user commands
                 // "address balance"
@@ -42,9 +47,13 @@ const bot = createBot({
 const handleDrip = async (interaction) => {
     const bot = interaction.bot;
 
-    await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
-        type: InteractionResponseTypes.DeferredChannelMessageWithSource,
-    });
+    await bot.helpers.sendInteractionResponse(
+        interaction.id,
+        interaction.token,
+        {
+            type: InteractionResponseTypes.DeferredChannelMessageWithSource,
+        },
+    );
 
     try {
         const reqAddress = interaction.data?.options?.[0]?.value as string;
@@ -54,7 +63,8 @@ const handleDrip = async (interaction) => {
         const signature = await transferTokens(reqAddress);
 
         await bot.helpers.editOriginalInteractionResponse(interaction.token, {
-            content: `✅ Success! Transaction: https://explorer.solana.com/tx/${signature}?cluster=devnet`,
+            content:
+                `✅ Success! Transaction: https://explorer.solana.com/tx/${signature}?cluster=devnet`,
         });
     } catch (err) {
         await bot.helpers.editOriginalInteractionResponse(interaction.token, {
@@ -65,10 +75,14 @@ const handleDrip = async (interaction) => {
 
 const handlePing = async (interaction) => {
     const bot = interaction.bot;
-    await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
-        type: InteractionResponseTypes.ChannelMessageWithSource,
-        data: { content: "🏓 Pong!" },
-    });
+    await bot.helpers.sendInteractionResponse(
+        interaction.id,
+        interaction.token,
+        {
+            type: InteractionResponseTypes.ChannelMessageWithSource,
+            data: { content: "🏓 Pong!" },
+        },
+    );
 };
 
 await bot.helpers.upsertGlobalApplicationCommands([

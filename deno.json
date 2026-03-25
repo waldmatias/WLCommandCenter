@@ -13,5 +13,9 @@
     "discord-bot": "deno --env -A ./integrations/discord/client.ts",
     "lint": "deno run -A npm:oxlint@latest --type-aware",
     "cache-lint": "deno cache npm:oxlint@latest npm:oxlint-tsgolint@latest"
+  },
+  "fmt": {
+    "useTabs": false,
+    "indentWidth": 4
   }
 }
