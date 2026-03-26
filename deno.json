@@ -1,5 +1,10 @@
 {
+  "$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
   "workspace": ["./services/*", "./integrations/*"],
+  "exclude": [
+    ".oxlintrc.json",
+    "node_modules/"
+  ],
   "nodeModulesDir": "auto",
   "imports": {
     "@solana-program/system": "npm:@solana-program/system@^0.12.0",
