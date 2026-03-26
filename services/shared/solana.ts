@@ -29,7 +29,6 @@ const sendAndConfirm = sendAndConfirmTransactionFactory({
 export const broadcast = async (signedTransaction: SendableTransaction) => {
     try {
         const signature = getSignatureFromTransaction(signedTransaction);
-        console.log(`${signature}`);
 
         await sendAndConfirm(signedTransaction, {
         commitment: "confirmed",

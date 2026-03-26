@@ -45,9 +45,7 @@ const bot = createBot({
 });
 
 const handleDrip = async (interaction) => {
-    const bot = interaction.bot;
-
-    await bot.helpers.sendInteractionResponse(
+    await interaction.bot.helpers.sendInteractionResponse(
         interaction.id,
         interaction.token,
         {
@@ -62,20 +60,19 @@ const handleDrip = async (interaction) => {
 
         const signature = await transferTokens(reqAddress);
 
-        await bot.helpers.editOriginalInteractionResponse(interaction.token, {
+        await interaction.bot.helpers.editOriginalInteractionResponse(interaction.token, {
             content:
                 `✅ Success! Transaction: https://explorer.solana.com/tx/${signature}?cluster=devnet`,
         });
     } catch (err) {
-        await bot.helpers.editOriginalInteractionResponse(interaction.token, {
+        await interaction.bot.helpers.editOriginalInteractionResponse(interaction.token, {
             content: `❌ Error: ${err.message}`,
         });
     }
 };
 
 const handlePing = async (interaction) => {
-    const bot = interaction.bot;
-    await bot.helpers.sendInteractionResponse(
+    await interaction.bot.helpers.sendInteractionResponse(
         interaction.id,
         interaction.token,
         {

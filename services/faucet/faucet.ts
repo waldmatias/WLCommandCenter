@@ -71,6 +71,6 @@ const solDrop = async (feePayer: KeyPairSigner, recipient: string): Promise<Sign
 
         console.log(`Anchor code: ${anchorError.code}, ${anchorError.msg}`);
 
-        throw new Error(anchorError.msg);
+        throw new Error(anchorError.msg, { cause: error });
     }
 };
