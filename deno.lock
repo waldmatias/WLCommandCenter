@@ -670,6 +670,7 @@
       "npm:@solana/kit@^6.5.0",
       "npm:discordeno@21",
       "npm:effect@^3.21.0",
+      "npm:oxlint-tsgolint@latest",
       "npm:oxlint@^1.57.0"
     ]
   }

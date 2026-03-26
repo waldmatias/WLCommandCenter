@@ -11,13 +11,14 @@
     "@solana/kit": "npm:@solana/kit@^6.5.0",
     "discordeno": "npm:discordeno@^21.0.0",
     "effect": "npm:effect@^3.21.0",
-    "oxlint": "npm:oxlint@^1.57.0"
+    "oxlint": "npm:oxlint@^1.57.0",
+    "oxlint-tsgo": "npm:oxlint-tsgolint@latest"
   },
   "tasks": {
     "prod": "deno --env -A main.ts",
     "discord-bot": "deno --env -A ./integrations/discord/client.ts",
-    "lint": "deno run -A npm:oxlint@latest --type-aware",
-    "cache-lint": "deno cache npm:oxlint@latest npm:oxlint-tsgolint@latest"
+    "lint": "deno run -A oxlint --type-aware",
+    "cache-lint": "deno cache oxlint oxlint-tsgo"
   },
   "fmt": {
     "useTabs": false,
